@@ -1,0 +1,5 @@
+export enum Delivery {
+    DELIVERED = "DELIVERED",
+    INDELIVERY = "INDELIVERY",
+    ORDER_RECIEVED = "ORDER_RECEIVED",
+}
