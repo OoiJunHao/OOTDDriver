@@ -33,6 +33,16 @@ export class DriverService {
     );
   }
 
+  updateDriver(toUpdateDriver: Driver): Observable<any> {
+    console.log(toUpdateDriver);
+    let updateDriverReqIonic = {
+      'toUpdateDriver': toUpdateDriver
+    }
+    return this.httpClient.post<any>(this.baseUrl, updateDriverReqIonic, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
 
