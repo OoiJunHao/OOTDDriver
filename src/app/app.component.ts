@@ -41,6 +41,11 @@ export class AppComponent {
           url: '/login',
           icon: 'log-out'
         },
+        {
+          title: 'Order Acceptance',
+          url: '/order-acceptance',
+          icon: 'bicycle'
+        }
       ];
     } else {
       this.appPages = [
@@ -54,6 +59,11 @@ export class AppComponent {
           title: 'Login/Register',
           url: '/login',
           icon: 'log-in'
+        },
+        {
+          title: 'Order Acceptance',
+          url: '/order-acceptance',
+          icon: 'bicycle'
         }
       ];
     }

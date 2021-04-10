@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DriverService {
-  baseUrl: string = "/api/Driver";
+  baseUrl: string = "/api/driverManagement";
 
   constructor(private httpClient: HttpClient,
     private sessionService: SessionService) { }
@@ -29,6 +29,12 @@ export class DriverService {
       "newDriver": newDriver,
     };
     return this.httpClient.put<any>(this.baseUrl, createNewDriverReq, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  addOrderToDriver(driverId : Number, customerId : Number, saleTransactionId : Number) : Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/setSaleToDriver/" + driverId + "/" + customerId + "/" + saleTransactionId).pipe(
       catchError(this.handleError)
     );
   }
