@@ -89,13 +89,18 @@
             </ion-row>
           </ion-grid>
           <br/>
-          <ion-list>
-            <ion-item expand="full" *ngFor="let listItem of saleTransactionLineItems">
-              <ion-label class="label">{{listItem.saleTransactionLineItems}}</ion-label>
-              <ion-label class="label">{{listItem.meal.name}}</ion-label>
-              <ion-label class="label">{{listItem.quantity}}</ion-label>
-            </ion-item>
-          </ion-list>
+          <ion-grid>
+            <ion-row>
+              <ion-col style="font-weight: bolder;">LineItemId</ion-col>
+              <ion-col style="font-weight: bolder;">Meal Name</ion-col>
+              <ion-col style="font-weight: bolder;">Quantity</ion-col>
+            </ion-row>
+            <ion-row *ngFor="let listItem of saleTransactionLineItems">
+              <ion-col class="itemlabel">{{ listItem.saleTransactionLineItemId }}</ion-col>
+              <ion-col class="itemlabel">{{ listItem.meal.name }}</ion-col>
+              <ion-col class="itemlabel">{{ listItem.quantity }}</ion-col>
+            </ion-row>
+          </ion-grid>
           <br/>
           <ion-button color="danger" expand="full" (click)="closeAndChosen()">Accept Order</ion-button>
           <ion-button color="warning" expand="full" (click)="closeCompletely()">End Search</ion-button>

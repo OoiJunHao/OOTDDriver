@@ -18,6 +18,7 @@ export class OrderAcceptanceModalPage implements OnInit {
     this.saleTransactionLineItems = this.value.saleTransactionLineItemEntities;
   }
 
+
   public closeModal()
 	{
 		 this.modalController.dismiss({
