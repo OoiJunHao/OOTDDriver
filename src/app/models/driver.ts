@@ -9,9 +9,11 @@ export class Driver {
     password: string;
     profilePicture: string;
     monthlyEarnings: number;
+    dailyEarnings: number;
     active: boolean;
 
     saleTransaction: SaleTransaction[];
+
 
 
     constructor(
@@ -23,6 +25,7 @@ export class Driver {
         password?: string,
         profilePicture?: string,
         monthlyEarnings?: number,
+        dailyEarnings?: number,
         active?: boolean,
         saleTransaction?: SaleTransaction[]
     ) {
@@ -34,6 +37,7 @@ export class Driver {
         this.password = password
         this.profilePicture = profilePicture
         this.monthlyEarnings = monthlyEarnings
+        this.dailyEarnings = dailyEarnings
         this.active = active
         this.saleTransaction = saleTransaction
     }

@@ -21,6 +21,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'show-driver-wallet',
+    loadChildren: () => import('./show-driver-wallet/show-driver-wallet.module').then( m => m.ShowDriverWalletPageModule)
+  },
 ];
 
 @NgModule({

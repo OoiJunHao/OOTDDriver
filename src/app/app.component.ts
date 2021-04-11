@@ -41,6 +41,11 @@ export class AppComponent {
           url: '/login',
           icon: 'log-out'
         },
+        {
+          title: 'My Wallet',
+          url: '/show-driver-wallet',
+          icon: 'wallet'
+        },
       ];
     } else {
       this.appPages = [
