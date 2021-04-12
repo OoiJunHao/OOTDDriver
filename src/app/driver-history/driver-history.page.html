@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>DriverHistory</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>View All Delivery Transactions</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-button expand="full" *ngFor="let transaction of driverDeliveryTransactions">
+          <ion-icon slot="start" name="arrow-forward"></ion-icon>
+          {{transaction.saleTransactionId}} - {{transaction.deliveryDateTime}} - {{transaction.totalAmount}}
+        </ion-button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

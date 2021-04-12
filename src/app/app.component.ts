@@ -46,6 +46,11 @@ export class AppComponent {
           url: '/show-driver-wallet',
           icon: 'wallet'
         },
+        {
+          title: 'My History',
+          url: '/driver-history',
+          icon: 'book'
+        },
       ];
     } else {
       this.appPages = [

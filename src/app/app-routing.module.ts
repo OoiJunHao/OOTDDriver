@@ -25,6 +25,10 @@ const routes: Routes = [
     path: 'show-driver-wallet',
     loadChildren: () => import('./show-driver-wallet/show-driver-wallet.module').then( m => m.ShowDriverWalletPageModule)
   },
+  {
+    path: 'driver-history',
+    loadChildren: () => import('./driver-history/driver-history.module').then( m => m.DriverHistoryPageModule)
+  },
 ];
 
 @NgModule({
