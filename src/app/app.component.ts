@@ -51,6 +51,15 @@ export class AppComponent {
           url: '/driver-history',
           icon: 'book'
         },
+          title: 'Order Acceptance',
+          url: '/order-acceptance',
+          icon: 'bicycle'
+        },
+        {
+          title: 'My Profile',
+          url: '/profile-management',
+          icon: 'book'
+        }
       ];
     } else {
       this.appPages = [
@@ -64,6 +73,11 @@ export class AppComponent {
           title: 'Login/Register',
           url: '/login',
           icon: 'log-in'
+        },
+        {
+          title: 'Order Acceptance',
+          url: '/order-acceptance',
+          icon: 'bicycle'
         }
       ];
     }

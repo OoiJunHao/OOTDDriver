@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DriverService {
-  baseUrl: string = "/api/Driver";
+  baseUrl: string = "/api/driverManagement";
 
   constructor(private httpClient: HttpClient,
     private sessionService: SessionService) { }
@@ -36,6 +36,22 @@ export class DriverService {
 
   retrieveDriverTransactions(driverId: string): Observable<SaleTransaction[]> {
     return this.httpClient.get<SaleTransaction[]>(this.baseUrl + "/getDriverTransactionDeliveries?driverId=" + driverId).pipe(
+          catchError(this.handleError)
+    );
+  }
+
+  addOrderToDriver(driverId : Number, customerId : Number, saleTransactionId : Number) : Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/setSaleToDriver/" + driverId + "/" + customerId + "/" + saleTransactionId).pipe(
+       catchError(this.handleError)
+    );
+  }
+  
+  updateDriver(toUpdateDriver: Driver): Observable<any> {
+    console.log(toUpdateDriver);
+    let updateDriverReqIonic = {
+      'toUpdateDriver': toUpdateDriver
+    }
+    return this.httpClient.post<any>(this.baseUrl, updateDriverReqIonic, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
