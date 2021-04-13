@@ -22,6 +22,14 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'order-acceptance',
+    loadChildren: () => import('./order-acceptance/order-acceptance.module').then( m => m.OrderAcceptancePageModule)
+  },
+  {
+    path: 'order-acceptance-modal',
+    loadChildren: () => import('./order-acceptance-modal/order-acceptance-modal.module').then( m => m.OrderAcceptanceModalPageModule)
+  },
+  {
     path: 'profile-management',
     loadChildren: () => import('./profile-management/profile-management.module').then( m => m.ProfileManagementPageModule)
   },

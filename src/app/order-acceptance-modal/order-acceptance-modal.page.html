@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar class="toolbarstyle" style="text-align: center;">    
+    <ion-title style="color: white;">
+      Order Acceptance
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+  <ion-content>
+    <ion-infinite-scroll threshold="100px" id="infinite-scroll">
+      <ion-card>      
+        <ion-card-header>        
+          <ion-card-title style="text-align: center;">Accept Order?</ion-card-title>
+        </ion-card-header>  
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item color="primary">
+                  <ion-label text-wrap class="label">Order Number : </ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item color="success">
+                  <ion-label text-wrap class="label">#{{value.saleTransactionId}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item color="primary">
+                  <ion-label text-wrap class="label">Name :</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item color="success">
+                  <ion-label text-wrap class="label">{{value.user.firstname}} {{value.user.lastname}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item color="primary">
+                  <ion-label class="label">Address : </ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item color="success">
+                  <ion-label text-wrap class="label">{{value.address.address}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item color="primary">
+                  <ion-label class="label">Order Items :</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item color="success">
+                  <ion-label text-wrap class="label">{{value.totalLineItem}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item color="primary">
+                  <ion-label text-wrap class="label">Total Quantity :</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item color="success">
+                  <ion-label text-wrap class="label">{{value.totalQuantity}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-item color="primary">
+                  <ion-label text-wrap class="label">Total Amount :</ion-label>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item color="success">
+                  <ion-label text-wrap class="label">${{value.totalAmount}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <br/>
+          <ion-grid>
+            <ion-row>
+              <ion-col style="font-weight: bolder;">LineItemId</ion-col>
+              <ion-col style="font-weight: bolder;">Meal Name</ion-col>
+              <ion-col style="font-weight: bolder;">Quantity</ion-col>
+            </ion-row>
+            <ion-row *ngFor="let listItem of saleTransactionLineItems">
+              <ion-col class="itemlabel">{{ listItem.saleTransactionLineItemId }}</ion-col>
+              <ion-col class="itemlabel">{{ listItem.meal.name }}</ion-col>
+              <ion-col class="itemlabel">{{ listItem.quantity }}</ion-col>
+            </ion-row>
+          </ion-grid>
+          <br/>
+          <ion-button color="danger" expand="full" (click)="closeAndChosen()">Accept Order</ion-button>
+          <ion-button color="warning" expand="full" (click)="closeCompletely()">End Search</ion-button>
+          <ion-button color="tertiary" expand="full" (click)="closeModal()">Search For Another Order</ion-button>
+        </ion-card-content>     
+      </ion-card>
+    </ion-infinite-scroll>
+  </ion-content>

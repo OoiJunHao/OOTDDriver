@@ -42,6 +42,11 @@ export class AppComponent {
           icon: 'log-out'
         },
         {
+          title: 'Order Acceptance',
+          url: '/order-acceptance',
+          icon: 'bicycle'
+        },
+        {
           title: 'My Profile',
           url: '/profile-management',
           icon: 'book'
@@ -59,6 +64,11 @@ export class AppComponent {
           title: 'Login/Register',
           url: '/login',
           icon: 'log-in'
+        },
+        {
+          title: 'Order Acceptance',
+          url: '/order-acceptance',
+          icon: 'bicycle'
         }
       ];
     }
