@@ -35,6 +35,16 @@ export class DriverService {
 
   addOrderToDriver(driverId : Number, customerId : Number, saleTransactionId : Number) : Observable<any> {
     return this.httpClient.get<any>(this.baseUrl + "/setSaleToDriver/" + driverId + "/" + customerId + "/" + saleTransactionId).pipe(
+       catchError(this.handleError)
+    );
+  }
+  
+  updateDriver(toUpdateDriver: Driver): Observable<any> {
+    console.log(toUpdateDriver);
+    let updateDriverReqIonic = {
+      'toUpdateDriver': toUpdateDriver
+    }
+    return this.httpClient.post<any>(this.baseUrl, updateDriverReqIonic, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

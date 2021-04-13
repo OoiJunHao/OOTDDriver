@@ -45,6 +45,11 @@ export class AppComponent {
           title: 'Order Acceptance',
           url: '/order-acceptance',
           icon: 'bicycle'
+        },
+        {
+          title: 'My Profile',
+          url: '/profile-management',
+          icon: 'book'
         }
       ];
     } else {
