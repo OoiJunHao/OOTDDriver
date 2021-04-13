@@ -51,6 +51,7 @@ export class AppComponent {
           url: '/driver-history',
           icon: 'book'
         },
+        {
           title: 'Order Acceptance',
           url: '/order-acceptance',
           icon: 'bicycle'
