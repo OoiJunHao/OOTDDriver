@@ -42,6 +42,15 @@ export class AppComponent {
           icon: 'log-out'
         },
         {
+          title: 'My Wallet',
+          url: '/show-driver-wallet',
+          icon: 'wallet'
+        },
+        {
+          title: 'My History',
+          url: '/driver-history',
+          icon: 'book'
+        },
           title: 'Order Acceptance',
           url: '/order-acceptance',
           icon: 'bicycle'

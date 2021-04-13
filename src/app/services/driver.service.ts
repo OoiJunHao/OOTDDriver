@@ -4,6 +4,7 @@ import { SessionService } from './session.service';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Driver } from '../models/driver';
+import { SaleTransaction } from '../models/sale-transaction';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,6 +31,12 @@ export class DriverService {
     };
     return this.httpClient.put<any>(this.baseUrl, createNewDriverReq, httpOptions).pipe(
       catchError(this.handleError)
+    );
+  }
+
+  retrieveDriverTransactions(driverId: string): Observable<SaleTransaction[]> {
+    return this.httpClient.get<SaleTransaction[]>(this.baseUrl + "/getDriverTransactionDeliveries?driverId=" + driverId).pipe(
+          catchError(this.handleError)
     );
   }
 
