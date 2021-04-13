@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Profile</ion-title>
+
+    <ion-button slot="end" color="tertiary" (click)="updateDetails()">
+      <ion-icon name="create-outline"></ion-icon>
+      Update Details
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card style="text-align: center">
+    <ion-card-content style="text-align: center;">
+      <!-- <ion-avatar>
+        <img src="{{'http://localhost:8080/OTFood-war/uploadedFiles/users/' + currentDriver.profilePicture + '.jpg'}}">
+      </ion-avatar> -->
+      <img src="https://i.imgur.com/yILM61G.jpg" style="height: 25%; width: 25%;" />
+    </ion-card-content>
+    <ion-label>{{currentDriver.firstname}} {{currentDriver.lastName}}</ion-label>
+  </ion-card>
+  <ion-card>
+    <ion-label><b>Username: </b>{{currentDriver.username}}</ion-label> <br><br />
+    <ion-label><b>Age: </b>{{currentDriver.age}}</ion-label> <br><br />
+    <ion-label><b>Monthly Earnings: </b>{{currentDriver.monthlyEarnings}}</ion-label> <br> <br>
+    <ion-label><b>Status: </b>{{currentDriver.active}}</ion-label> <br><br />
+  </ion-card>
+
+
+</ion-content>

@@ -41,6 +41,11 @@ export class AppComponent {
           url: '/login',
           icon: 'log-out'
         },
+        {
+          title: 'My Profile',
+          url: '/profile-management',
+          icon: 'book'
+        }
       ];
     } else {
       this.appPages = [
