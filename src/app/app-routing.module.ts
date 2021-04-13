@@ -28,6 +28,8 @@ const routes: Routes = [
   {
     path: 'driver-history',
     loadChildren: () => import('./driver-history/driver-history.module').then( m => m.DriverHistoryPageModule)
+  },
+  {
     path: 'order-acceptance',
     loadChildren: () => import('./order-acceptance/order-acceptance.module').then( m => m.OrderAcceptancePageModule)
   },
