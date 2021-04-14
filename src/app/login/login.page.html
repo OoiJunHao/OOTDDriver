@@ -1,90 +1,52 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="light">
     <ion-buttons slot="start">
-      <ion-button (click)="back()">
-        <ion-icon slot="start" name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title *ngIf="sessionService.getIsLogin() == false">Login</ion-title>
-    <ion-title *ngIf="sessionService.getIsLogin() == true">Logout</ion-title>
-
+    <ion-title *ngIf="sessionService.getIsLogin() == false">Log In</ion-title>
+    <ion-title *ngIf="sessionService.getIsLogin() == true">Log Out</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card *ngIf="sessionService.getIsLogin() == false">
     <ion-card-content>
-
-      <div *ngIf="loginError == true" style="color: red;">
-        {{errorMessage}}
-      </div>
-
       <form #driverLoginForm="ngForm" (ngSubmit)="driverLogin(driverLoginForm)">
+        <ion-item>
+          <ion-label position="stacked">
+            <ion-icon name="person-circle-outline"></ion-icon> Username
+          </ion-label>
+          <ion-input type="text" id="username" name="username" [(ngModel)]="username" minlength="4" maxlength="32"
+            required="true" #inusername="ngModel" placeholder="Username"></ion-input>
+        </ion-item>
 
-        <div style="color: red;">
+        <ion-item>
+          <ion-label position="stacked">
+            <ion-icon name="shield-checkmark"></ion-icon> Password
+          </ion-label>
+          <ion-input type="password" id="password" name="password" [(ngModel)]="password" minlength="4" maxlength="32"
+            required="true" #inpassword="ngModel" placeholder="Password"></ion-input>
+        </ion-item>
 
-          <div *ngIf="inusername.invalid && (inusername.dirty || inusername.touched || submitted)" class="errorText">
-            <div *ngIf="inusername.errors.required">
-              Username is required.
-            </div>
-            <div *ngIf="inusername.errors.minlength">
-              Username must be at least 4 characters long.
-            </div>
-            <div *ngIf="inusername.errors.maxlength">
-              Username cannot exceed 32 characters.
-            </div>
-          </div>
+        <ion-item>
+          <ion-button class="ion-activatable ripple-parent" type="submit" expand="block" size="default" color="warning">
+            Login
+            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-button class="ion-activatable ripple-parent" (click)="clear()" color="warning">
+            Clear
+            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+          </ion-button>
 
-          <div *ngIf="inpassword.invalid && (inpassword.dirty || inpassword.touched || submitted)" class="errorText">
-            <div *ngIf="inpassword.errors.required">
-              Password is required.
-            </div>
-            <div *ngIf="inpassword.errors.minlength">
-              Password must be at least 4 characters long.
-            </div>
-            <div *ngIf="inpassword.errors.maxlength">
-              Password cannot exceed 32 characters.
-            </div>
-          </div>
+          <ion-button class="ion-activatable ripple-parent" (click)="registerDriver()" color="warning">
+            Register
+            <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+          </ion-button>
+        </ion-item>
 
-          <div *ngIf="loginErrorMessage" class="errorText">
-            {{loginErrorMessage}}
-          </div>
 
-        </div>
-
-        <ion-list>
-
-          <ion-item>
-            <ion-icon name="person-circle-outline"></ion-icon>
-            <ion-label fixed>Username</ion-label>
-            <ion-input type="text" id="username" name="username" [(ngModel)]="username" minlength="4" maxlength="32"
-              required="true" #inusername="ngModel"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-icon name="shield-checkmark"></ion-icon>
-            <ion-label fixed>Password</ion-label>
-            <ion-input type="password" id="password" name="password" [(ngModel)]="password" minlength="4" maxlength="32"
-              required="true" #inpassword="ngModel"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-button class="ion-activatable ripple-parent" (click)="clear()">
-              Clear
-              <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-            </ion-button>
-            <ion-button class="ion-activatable ripple-parent" type="submit" ion-button block>
-              Login
-              <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-            </ion-button>
-            <ion-button class="ion-activatable ripple-parent" (click)="registerDriver()">
-              Register
-              <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-            </ion-button>
-          </ion-item>
-
-        </ion-list>
 
       </form>
 
@@ -95,16 +57,16 @@
     <ion-card-content>
       <ion-header style="text-align: center;"> Are You Sure You Want To Log Out? <br> If Yes, Click The Button
         Below</ion-header>
-      <ion-button slot="secondary" expand="block" (click)="driverLogout()" *ngIf="sessionService.getIsLogin() == true">
+      <ion-button slot="secondary" expand="block" (click)="driverLogout()" *ngIf="sessionService.getIsLogin() == true" color="warning">
         <ion-icon slot="start" name="log-out"></ion-icon>
         Logout
       </ion-button>
     </ion-card-content>
   </ion-card>
-
-
 </ion-content>
 
 <ion-footer>
-  <ion-title size="small">&copy; 2020 IS3106. All rights reserved.</ion-title>
+  <ion-toolbar color="light">
+    <ion-title>&copy; 2021 IS3106</ion-title>
+  </ion-toolbar>
 </ion-footer>

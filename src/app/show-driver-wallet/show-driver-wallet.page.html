@@ -1,6 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>{{driver.firstname}} {{driver.lastName}}'s Wallet</ion-title>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Wallet</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -47,5 +50,7 @@
 <ion-button expand="block" color="success" (click)="presentToast()">Cash Out</ion-button>
 
 <ion-footer>
-  <ion-title size="small">&copy; 2020 IS3106. All rights reserved.</ion-title>
+  <ion-toolbar color="light">
+    <ion-title>&copy; 2021 IS3106</ion-title>
+  </ion-toolbar>
 </ion-footer>

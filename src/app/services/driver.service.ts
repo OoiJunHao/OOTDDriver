@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DriverService {
-  baseUrl: string = "/api/driverManagement";
+  baseUrl: string = "/api/Driver";
 
   constructor(private httpClient: HttpClient,
     private sessionService: SessionService) { }

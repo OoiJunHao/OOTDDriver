@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar class="toolbar">
     <div class="align">
       <div class="backbutton">
@@ -12,13 +12,26 @@
     </div>
     
   </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Accept a delivery</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-  <ion-content style="text-align: center;">
-    <div class="buttonclick">
-      <ion-button size="large" shape="round" color="warning" (click)="onSearch()" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Search For Orders</ion-button>
-    </div>
-  </ion-content>
+<ion-content style="text-align: center;">
+  <div class="buttonclick">
+    <ion-button size="large" shape="round" color="warning" (click)="onSearch()"
+      style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Search For Orders
+    </ion-button>
+  </div>
+</ion-content>
 
-
-
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-title>&copy; 2021 IS3106</ion-title>
+  </ion-toolbar>
+</ion-footer>
