@@ -37,20 +37,30 @@ export class AppComponent {
           icon: 'home'
         },
         {
-          title: 'Logout',
-          url: '/login',
-          icon: 'log-out'
-        },
-        {
           title: 'Order Acceptance',
           url: '/order-acceptance',
           icon: 'bicycle'
         },
         {
+          title: 'My Wallet',
+          url: '/show-driver-wallet',
+          icon: 'wallet'
+        },
+        {
+          title: 'My History',
+          url: '/driver-history',
+          icon: 'book'
+        },
+        {
           title: 'My Profile',
           url: '/profile-management',
           icon: 'book'
-        }
+        },
+        {
+          title: 'Logout',
+          url: '/login',
+          icon: 'log-out'
+        },
       ];
     } else {
       this.appPages = [
@@ -64,11 +74,6 @@ export class AppComponent {
           title: 'Login/Register',
           url: '/login',
           icon: 'log-in'
-        },
-        {
-          title: 'Order Acceptance',
-          url: '/order-acceptance',
-          icon: 'bicycle'
         }
       ];
     }

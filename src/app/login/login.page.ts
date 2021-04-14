@@ -12,18 +12,16 @@ import { SessionService } from '../services/session.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  submitted: boolean;
   username: string;
   password: string;
-  loginError: boolean;
-  errorMessage: string;
 
   constructor(private router: Router,
     public sessionService: SessionService, private driverService: DriverService, private appComponent: AppComponent) {
-    this.submitted = false;
   }
 
   ngOnInit() {
+    this.username = "";
+    this.password = "";
   }
 
   clear() {
@@ -32,8 +30,15 @@ export class LoginPage implements OnInit {
   }
 
   driverLogin(driverLoginForm: NgForm) {
-    this.submitted = true;
-    if (driverLoginForm.valid) {
+    if (this.username.length == 0) {
+      this.loginFail("Please enter a valid username");
+    } else if (this.username.length < 4 || this.username.length > 32) {
+      this.loginFail("Please ensure that username is between 4 and 32 characters");
+    } else if (this.password.length == 0) {
+      this.loginFail("Please enter a valid password");
+    } else if (this.password.length < 4 || this.password.length > 32) {
+      this.loginFail("Please ensure that password is between 4 and 32 characters");
+    } else if (driverLoginForm.valid) {
       this.sessionService.setUsername(this.username);
       this.sessionService.setPassword(this.password);
 
@@ -43,22 +48,18 @@ export class LoginPage implements OnInit {
           if (driver != null) {
             this.sessionService.setIsLogin(true);
             this.sessionService.setCurrentDriver(driver);
-            this.loginError = false;
             this.appComponent.updateMainMenu();
             this.router.navigate(["/index"]);
           } else {
-            this.loginFail();
-            this.loginError = true;
+            this.loginFail("Your Username And Password Does Not Match Or Have Not Registered An Account With Us. \n Please Try Again Or Register An Account With Us!");
           }
         },
         error => {
-          this.loginFail();
-          this.loginError = true;
-          this.errorMessage = error;
+          this.loginFail("Your Username And Password Does Not Match Or Have Not Registered An Account With Us. \n Please Try Again Or Register An Account With Us!");
         }
       );
     } else {
-
+      this.loginFail("An error has occured\nPlease try again");
     }
   }
 
@@ -77,12 +78,13 @@ export class LoginPage implements OnInit {
     this.router.navigate(["/register"]);
   }
 
-  async loginFail() {
+  async loginFail(message: string) {
     const toast = document.createElement('ion-toast');
-    toast.message = "Your Username And Password Does Not Match Or Have Not Registered An Account With Us. \n Please Try Again Or Register An Account With Us!";
-    toast.position = "top";
+    toast.message = message;
+    toast.position = "bottom";
     toast.duration = 4000;
     toast.style.textAlign = "center";
+    toast.style.color = "#ff6054";
 
     document.body.appendChild(toast);
     return toast.present();

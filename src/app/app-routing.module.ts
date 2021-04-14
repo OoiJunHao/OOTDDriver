@@ -22,6 +22,14 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
+    path: 'show-driver-wallet',
+    loadChildren: () => import('./show-driver-wallet/show-driver-wallet.module').then( m => m.ShowDriverWalletPageModule)
+  },
+  {
+    path: 'driver-history',
+    loadChildren: () => import('./driver-history/driver-history.module').then( m => m.DriverHistoryPageModule)
+  },
+  {
     path: 'order-acceptance',
     loadChildren: () => import('./order-acceptance/order-acceptance.module').then( m => m.OrderAcceptancePageModule)
   },

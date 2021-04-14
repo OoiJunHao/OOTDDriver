@@ -41,9 +41,7 @@ export class ProfileModalPage implements OnInit {
   }
 
   public closeModal() {
-    this.modalController.dismiss({
-      'toUpdateDriver': this.driverHolder
-    });
+    this.modalController.dismiss();
   }
 
   async nameLengthError() {

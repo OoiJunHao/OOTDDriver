@@ -1,8 +1,5 @@
 <ion-header>
-  <ion-buttons slot="start">
-    <ion-menu-button></ion-menu-button>
-  </ion-buttons>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="warning">
     <ion-title>My Details</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -18,28 +15,25 @@
 
       <ion-item>
         <ion-label><b>First Name</b></ion-label>
-        <ion-input placeholder="test" type="text" id="firstname" name="firstname" [(ngModel)]="currentDriver.firstname"
+        <ion-input placeholder="Input First Name" type="text" id="firstname" name="firstname" [(ngModel)]="currentDriver.firstname"
           required="true" #firstname="ngModel"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label><b>Last Name</b></ion-label>
-        <ion-input placeholder="test" type="text" id="lastName" name="lastName" [(ngModel)]="currentDriver.lastName"
+        <ion-input placeholder="Input Last Name" type="text" id="lastName" name="lastName" [(ngModel)]="currentDriver.lastName"
           required="true" #lastName="ngModel"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label><b>Age</b></ion-label>
-        <ion-input placeholder="test" type="number" id="age" name="age" [(ngModel)]="currentDriver.age" required="true"
+        <ion-input placeholder="Input Age" type="number" id="age" name="age" [(ngModel)]="currentDriver.age" required="true"
           #age="ngModel"></ion-input>
       </ion-item>
-
-
-
     </ion-list>
 
 
-    <ion-button expand="block" type="submit"> Update</ion-button>
-    <ion-button expand="block" (click)="closeModal()"> Close</ion-button>
+    <ion-button expand="block" type="submit" color="success">Update</ion-button>
+    <ion-button expand="block" (click)="closeModal()" color="warning">Close</ion-button>
   </form>
 </ion-content>

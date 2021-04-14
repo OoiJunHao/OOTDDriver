@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Wallet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <ion-text style="font-size: large;">
+            Wallet Amount:
+          </ion-text>
+          
+        </ion-col>
+        <ion-col>
+          {{driver.monthlyEarnings}}
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-row>
+      <ion-text style="font-size: large;">
+        Your feedback/ appeals:
+      </ion-text>
+    </ion-row>
+
+    <ng-form #driverFeedbackForm="ngForm" onsubmit="presentFeedbackToast()">
+      <ion-row>
+        <ion-textarea>
+          <ion-input name="feedback" [(ngModel)]="feedback" [ngModelOptions]="{standalone: true}">
+  
+          </ion-input>
+        </ion-textarea>
+        
+      </ion-row>
+      <ion-button (click)="presentFeedbackToast();">Submit Feedback</ion-button>  
+    </ng-form>
+   
+    
+  </ion-card>
+</ion-content>
+<ion-button expand="block" color="success" (click)="presentToast()">Cash Out</ion-button>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-title>&copy; 2021 IS3106</ion-title>
+  </ion-toolbar>
+</ion-footer>
