@@ -4,7 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DatePipe } from '@angular/common';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 
@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     // SplashScreen,
     // StatusBar,
+    DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
