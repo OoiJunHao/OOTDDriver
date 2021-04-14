@@ -13,13 +13,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./order-acceptance.page.scss'],
 })
 export class OrderAcceptancePage implements OnInit {
-  searching : boolean;
+  searching: boolean;
   found: boolean;
-  orderFound : SaleTransaction
+  orderFound: SaleTransaction
 
   constructor(private orderAcceptanceService: OrderAcceptanceServiceService,
-    public modalController : ModalController, private driverService : DriverService, private sessionService : SessionService,
-     private toastController: ToastController, private router: Router) { 
+    public modalController: ModalController, private driverService: DriverService, private sessionService: SessionService,
+    private toastController: ToastController, private router: Router) {
   }
 
   ngOnInit() {
@@ -31,16 +31,16 @@ export class OrderAcceptancePage implements OnInit {
     this.orderAcceptanceService.retrieveOrder().subscribe(
       response => {
         if (response != null) {
-          
+
           this.found = true; //update progress bar
           this.orderFound = response;
-        } 
+        }
       }, error => {
         console.log("An error has occured: " + error);
       }
     )
-    
-    
+
+
   }
 
   back() {
@@ -48,46 +48,57 @@ export class OrderAcceptancePage implements OnInit {
   }
   onSearch() {
     this.orderAcceptanceService.retrieveOrder().subscribe(
-        response => {
+      response => {
         console.log(response);
         this.orderFound = response;
         this.found = true;
         this.presentModal();
       }, error => {
         console.log("An error has occured: " + error);
+
+        const toast = document.createElement('ion-toast');
+        toast.message = "There are no pending deliveries at the moment";
+        toast.position = "bottom";
+        toast.duration = 3000;
+        toast.style.textAlign = "center";
+        toast.style.color = "#ff6054";
+
+        document.body.appendChild(toast);
+        toast.present();
+
+
       }
     )
-  
+
   }
 
-  async presentModal() 
-	{
-		const modal = await this.modalController.create({
-			component: OrderAcceptanceModalPage,
-			componentProps: { value: this.orderFound}
-		});
-		
-		modal.onDidDismiss().then((event) => {
-			const retVal = event.data.result;
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: OrderAcceptanceModalPage,
+      componentProps: { value: this.orderFound }
+    });
+
+    modal.onDidDismiss().then((event) => {
+      const retVal = event.data.result;
       this.found = false;
       if (retVal == "refresh") {
         this.onSearch();
       } else if (retVal == "selected") {
-        this.driverService.addOrderToDriver(1, this.orderFound.user.userId, this.orderFound.saleTransactionId).subscribe( //edit the driverId
+        this.driverService.addOrderToDriver(this.sessionService.getCurrentDriver().driverId, this.orderFound.user.userId, this.orderFound.saleTransactionId).subscribe( //edit the driverId
           response => {
-              this.displaySuccess("saletransaction of Id:" + this.orderFound.saleTransactionId + " is assigned to driverId: ");
+            this.displaySuccess("saletransaction of Id:" + this.orderFound.saleTransactionId + " is assigned to driverId: ");
           }, error => {
             this.displayError(error);
           }
         )
       }
-			console.log('********** From Modal: ' + retVal);
-		});
+      console.log('********** From Modal: ' + retVal);
+    });
 
-		
-		return await modal.present();
+
+    return await modal.present();
   }
-  
+
   async displayError(messageString: string) {
     const toast = await this.toastController.create({
       color: 'danger',
@@ -97,8 +108,8 @@ export class OrderAcceptancePage implements OnInit {
 
     await toast.present();
   }
-  
-  async displaySuccess(messageString : string) {
+
+  async displaySuccess(messageString: string) {
     const toast = await this.toastController.create({
       color: 'success',
       duration: 2000,
@@ -108,7 +119,7 @@ export class OrderAcceptancePage implements OnInit {
     await toast.present();
   }
 }
-  
-  
+
+
 
 
