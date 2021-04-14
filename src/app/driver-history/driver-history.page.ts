@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { SaleTransaction } from '../models/sale-transaction';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-driver-history',
@@ -20,7 +21,7 @@ export class DriverHistoryPage implements OnInit {
   
 
   constructor(private router: Router,
-    public sessionService: SessionService, private driverService: DriverService) { }
+    public sessionService: SessionService, private driverService: DriverService, public datePipe: DatePipe) { }
 
   ngOnInit() {
     this.updateModel
@@ -42,5 +43,13 @@ export class DriverHistoryPage implements OnInit {
 			}
     );
   }
+
+  returnDate(date: Date) : String {
+    let newDate;
+    newDate = date.toString().substring(0, date.toString().length - 5);
+    console.log(newDate)
+    date = new Date(newDate);
+    return this.datePipe.transform(date, 'dd/MM/yyyy hh:mm:ss a')
+  } 
 
 }
