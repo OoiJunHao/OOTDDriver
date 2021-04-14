@@ -21,6 +21,7 @@ export class ProfileManagementPage implements OnInit {
 
   ngOnInit() {
     this.currentDriver = this.sessionService.getCurrentDriver();
+    console.log(this.currentDriver.profilePicture);
   }
 
   async updateDetails() {
@@ -32,7 +33,7 @@ export class ProfileManagementPage implements OnInit {
     });
 
     profileModal.onDidDismiss().then((event) => {
-      if (event.data.toUpdateDriver != null) {
+      if (event.data.toUpdateDriver) {
         let toUpdateDriver = event.data.toUpdateDriver;
         // toUpdateDriver.password = this.currentDriver.password;
         console.log(toUpdateDriver);

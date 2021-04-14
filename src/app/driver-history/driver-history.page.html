@@ -1,21 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>DriverHistory</ion-title>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Delivery History</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>View All Delivery Transactions</ion-card-title>
+      <ion-card-title>All Deliveries</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-button expand="full" *ngFor="let transaction of driverDeliveryTransactions">
+        <ion-item *ngFor="let transaction of driverDeliveryTransactions">
+          <ion-label>
+            <h1>Sale Transaction #{{transaction.saleTransactionId}}</h1>
+            <h5>{{transaction.address.address}}</h5>
+            <p>{{transaction.deliveryDateTime.toString().substring(0,9)}}
+              {{transaction.deliveryDateTime.toString().substring(11,19)}}</p>
+          </ion-label>
+        </ion-item>
+        <!-- <ion-button expand="full" *ngFor="let transaction of driverDeliveryTransactions">
           <ion-icon slot="start" name="arrow-forward"></ion-icon>
           {{transaction.saleTransactionId}} - {{transaction.deliveryDateTime}} - {{transaction.totalAmount}}
-        </ion-button>
+        </ion-button> -->
       </ion-list>
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-title>&copy; 2021 IS3106</ion-title>
+  </ion-toolbar>
+</ion-footer>
