@@ -4,7 +4,7 @@ import { Driver } from '../models/driver';
 import { ProfileModalPage } from '../profile-modal/profile-modal.page';
 import { DriverService } from '../services/driver.service';
 import { SessionService } from '../services/session.service';
-
+import { ImagePickerService } from '../services/image-picker.service';
 @Component({
   selector: 'app-profile-management',
   templateUrl: './profile-management.page.html',
@@ -15,8 +15,7 @@ export class ProfileManagementPage implements OnInit {
   currentDriver: Driver;
   driverToUpdate: Driver;
 
-  constructor(private sessionService: SessionService, private driverService: DriverService, private modalController: ModalController,) {
-
+  constructor(private sessionService: SessionService, private driverService: DriverService, private modalController: ModalController, private imagePickerService: ImagePickerService) {
   }
 
   ngOnInit() {
@@ -74,4 +73,24 @@ export class ProfileManagementPage implements OnInit {
     document.body.appendChild(toast);
     return toast.present();
   }
+
+  updateImage() {
+    
+    // const options: CameraOptions = {
+    //   quality: 100,
+    //   destinationType: this.camera.DestinationType.DATA_URL,
+    //   encodingType: this.camera.EncodingType.JPEG,
+    //   mediaType: this.camera.MediaType.PICTURE
+    // }
+
+    // console.log("calling iamge")
+    // this.camera.getPicture(options).then((imagedata) => {
+    //   console.log("Camera Image Captures");
+    // }, (err) => {
+    //   console.log("Camera issue: " + err);
+    // });
+    this.imagePickerService.selectImage();
+  }
+
+  
 }
