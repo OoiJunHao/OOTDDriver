@@ -115,7 +115,8 @@ export class OrderAcceptancePage implements OnInit {
         this.displaySuccess("Successfully accepted delivery order\nPlease ride safe!")
         this.sessionService.setCurrentDriver(response);
         this.inDelivery = true;
-        this.presentDeliveryLoading()
+        this.presentDeliveryLoading();
+        this.loadMap();
       }, error => {
         console.log(error)
         this.displayError("Delivery is no longer available :(\n Searching for new delivery");

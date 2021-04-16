@@ -16,13 +16,13 @@
       <ion-item>
         <ion-label><b>First Name</b></ion-label>
         <ion-input placeholder="Input First Name" type="text" id="firstname" name="firstname" [(ngModel)]="currentDriver.firstname"
-          required="true" #firstname="ngModel"></ion-input>
+          required="true" #firstname="ngModel" minlength="1" maxlength="32"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label><b>Last Name</b></ion-label>
         <ion-input placeholder="Input Last Name" type="text" id="lastName" name="lastName" [(ngModel)]="currentDriver.lastName"
-          required="true" #lastName="ngModel"></ion-input>
+          required="true" #lastName="ngModel" minlength="1" maxlength="32"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -33,7 +33,7 @@
 
       <ion-item>
         <ion-label><b>Bank Account #</b></ion-label>
-        <ion-input placeholder="Input Bank Acc #" type="text" id="no" name="no" [(ngModel)]="currentDriver.bankAccountNumber" required="true"
+        <ion-input placeholder="Input Bank Acc #" type="number" id="no" name="no" [(ngModel)]="currentDriver.bankAccountNumber" required="true"
           #no="ngModel"></ion-input>
       </ion-item>
     </ion-list>
