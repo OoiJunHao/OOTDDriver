@@ -68,6 +68,12 @@ export class DriverService {
    );
   }
 
+  cashOutEarnings(driverId: Number): Observable<Driver> {
+    return this.httpClient.post<any>(this.baseUrl + "/cashOutEarnings/?driverId=" + driverId, httpOptions).pipe(
+      catchError(this.handleError)
+   );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
 
