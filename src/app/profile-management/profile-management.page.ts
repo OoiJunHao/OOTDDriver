@@ -5,6 +5,10 @@ import { ProfileModalPage } from '../profile-modal/profile-modal.page';
 import { DriverService } from '../services/driver.service';
 import { SessionService } from '../services/session.service';
 import { ImagePickerService } from '../services/image-picker.service';
+import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
+
 @Component({
   selector: 'app-profile-management',
   templateUrl: './profile-management.page.html',
@@ -14,13 +18,21 @@ export class ProfileManagementPage implements OnInit {
 
   currentDriver: Driver;
   driverToUpdate: Driver;
+  profilePicture: string;
 
-  constructor(private sessionService: SessionService, private driverService: DriverService, private modalController: ModalController, private imagePickerService: ImagePickerService) {
+  constructor(private sessionService: SessionService, private driverService: DriverService, private modalController: ModalController, private imagePickerService: ImagePickerService, private imagePicker: ImagePicker, private webView: WebView, private base64: Base64) {
   }
 
   ngOnInit() {
     this.currentDriver = this.sessionService.getCurrentDriver();
-    console.log(this.currentDriver.profilePicture);
+    this.imagePickerService.retrieveProfilePicture(String(this.currentDriver.driverId)).subscribe(response => {
+      this.profilePicture = response.base64Code;
+      console.log(this.profilePicture);
+    },
+      error => {
+        console.log(error);
+      })
+
   }
 
   async updateDetails() {
@@ -75,22 +87,68 @@ export class ProfileManagementPage implements OnInit {
   }
 
   updateImage() {
-    
-    // const options: CameraOptions = {
-    //   quality: 100,
-    //   destinationType: this.camera.DestinationType.DATA_URL,
-    //   encodingType: this.camera.EncodingType.JPEG,
-    //   mediaType: this.camera.MediaType.PICTURE
-    // }
+    const options: ImagePickerOptions = {
+      maximumImagesCount: 1,
+      outputType: 1, // dunno why this doesnt work, pls report to cordova....
+      quality: 100
+    }
 
-    // console.log("calling iamge")
-    // this.camera.getPicture(options).then((imagedata) => {
-    //   console.log("Camera Image Captures");
-    // }, (err) => {
-    //   console.log("Camera issue: " + err);
-    // });
-    this.imagePickerService.selectImage();
+    this.imagePicker.getPictures(options).then((imageData) => {
+      for (var i = 0; i < imageData.length; i++) {
+        this.base64.encodeFile(imageData[i]).then((base64File: string) => {
+          this.imagePickerService.uploadImage(this.sessionService.getCurrentDriver().driverId.toString(), base64File).subscribe(
+            res => {
+              this.ngOnInit();
+              this.updateSuccess()
+            } ,
+            err => {
+              console.log(err)
+              this.updateFailure();
+            });
+        }, (err) => {
+          console.log(err);
+          this.updateFailure();
+        });
+
+        // var imagePath = imageData[i].substr(0, imageData[i].lastIndexOf('/') + 1);
+        // var imageName = imageData[i].substr(imageData[i].lastIndexOf('/') + 1);
+        // console.log('File.readAsDataURL: imagePath: ' + imagePath);
+        // console.log('File.readAsDataURL: imageName: ' + imageName);
+        // File.readAsDataURL(imagePath, imageName).then((b64str) => {
+        //   console.log('Image B64 URL: ' + b64str);
+        //   function loadImage(src, callback) {
+        //     var img = new Image();
+        //     img.onload = callback;
+        //     img.setAttribute('crossorigin', 'anonymous'); // works for me
+        //     img.src = src;
+        //     return img;
+        // }
+        // function encodeImageUri(imageUri, callback) {
+        //   var c = document.createElement('canvas');
+        //   var ctx = c.getContext("2d");
+        //   var img = new Image();
+        //   img.setAttribute('crossorigin', 'anonymous'); // works for me
+        //   img.onload = function () {
+        //     var aux:any = this;
+        //     c.width = aux.width;
+        //     c.height = aux.height;
+        //     ctx.drawImage(img, 0, 0);
+        //     var dataURL = c.toDataURL("image/jpeg");
+        //     callback(dataURL);
+        //   };
+        //   img.src = imageUri;
+        // };
+        // encodeImageUri(this.webView.convertFileSrc(imageData[i]), function(base64) {
+        //   console.log(base64);
+        // }) 
+        // toDataUrl(this.webView.convertFileSrc(imageData[i]), function (myBase64) {
+        //   console.log(myBase64); // myBase64 is the base64 string
+        // });
+      }
+    }, (err) => {
+      console.log("Gallery issue: " + err);
+    });
   }
 
-  
+
 }

@@ -13,6 +13,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +26,11 @@ import { Camera } from '@ionic-native/camera/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Camera,
     SplashScreen,
-    StatusBar
+    StatusBar,
+    ImagePicker,
+    WebView,
+    Base64,
+    HTTP
   ],
   bootstrap: [AppComponent],
 })
