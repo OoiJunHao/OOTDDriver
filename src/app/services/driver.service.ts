@@ -56,6 +56,18 @@ export class DriverService {
     );
   }
 
+  retrieveCurrentDeliveryTransaction(driverId: Number): Observable<SaleTransaction> {
+    return this.httpClient.get<SaleTransaction>(this.baseUrl + "/getCurrentDelivery/" + driverId).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  completeDelivery(driverId: Number, saleTransactionId: Number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/completeDelivery/" + driverId + "/" + saleTransactionId).pipe(
+      catchError(this.handleError)
+   );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
 

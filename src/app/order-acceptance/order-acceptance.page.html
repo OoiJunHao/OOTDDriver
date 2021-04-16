@@ -1,32 +1,120 @@
-<!-- <ion-header>
-  <ion-toolbar class="toolbar">
-    <div class="align">
-      <div class="backbutton">
-        <ion-button fill="clear" (click)="back()">
-          <ion-icon name="arrow-back"></ion-icon>
-        </ion-button>
-      </div>
-      <div class="headertext">
-        <ion-title style="color: white;">Accept An Order</ion-title>
-      </div>
-    </div>
-    
-  </ion-toolbar>
-</ion-header> -->
 <ion-header>
   <ion-toolbar color="light">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Accept a delivery</ion-title>
+    <ion-title *ngIf="!inDelivery">Accept a delivery</ion-title>
+    <ion-title *ngIf="inDelivery">In Delivery</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content style="text-align: center;">
-  <div class="buttonclick">
-    <ion-button size="large" shape="round" color="warning" (click)="onSearch()"
-      style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Search For Orders
-    </ion-button>
+  <ion-card *ngIf="found && !inDelivery">
+    <ion-card-header>
+      <ion-card-title style="text-align: center;">Order Details</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <p>Order #: </p>
+            <h2>#{{orderFound.saleTransactionId}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Customer Name: </p>
+            <h2>{{orderFound.user.firstname}} {{orderFound.user.lastName}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Delivery Address: </p>
+            <h2>{{orderFound.address.address}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Total Quantity:</p>
+            <h2>{{orderFound.totalQuantity}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Total Amount:</p>
+            <h2>${{orderFound.totalAmount}}</h2>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <p>Delivery Date and Time:</p>
+            <h2>{{orderFound.deliveryDateTime.toString().substring(0,10)}}
+              {{orderFound.deliveryDateTime.toString().substring(11,19)}}</h2>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-button color="warning" expand="full" (click)="showOrderDetails()">Item Details</ion-button>
+    </ion-card-content>
+    <ion-button color="warning" expand="full" (click)="acceptDelivery()">Accept Delivery</ion-button>
+    <ion-button color="danger" expand="full" (click)="refresh()">Refresh</ion-button>
+  </ion-card>
+
+  <ion-card *ngIf="!found && !inDelivery">
+    <img src="../../assets/ootdDriver_truck.png" alt="Click on refresh to look for a new delivery!">
+    <ion-button color="warning" expand="block" (click)="refresh()">Refresh</ion-button>
+  </ion-card>
+
+  <div *ngIf="inDelivery">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">Order Details</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <p>Order #: </p>
+              <h2>#{{orderFound.saleTransactionId}}</h2>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <p>Customer Name: </p>
+              <h2>{{orderFound.user.firstname}} {{orderFound.user.lastName}}</h2>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <p>Delivery Address: </p>
+              <h2>{{orderFound.address.address}}</h2>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <p>Total Quantity:</p>
+              <h2>{{orderFound.totalQuantity}}</h2>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <p>Total Amount:</p>
+              <h2>${{orderFound.totalAmount}}</h2>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <p>Delivery Date and Time:</p>
+              <h2>{{orderFound.deliveryDateTime.toString().substring(0,10)}}
+                {{orderFound.deliveryDateTime.toString().substring(11,19)}}</h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-button color="primary" expand="full" (click)="showOrderDetails()">Item Details</ion-button>
+      </ion-card-content>
+
+    </ion-card>
+    <ion-button color="success" expand="full" (click)="completeDelivery()" size="large">Complete Delivery</ion-button>
+    <ion-button color="warning" expand="full" (click)="callCustomer()">Call</ion-button>
   </div>
 </ion-content>
 

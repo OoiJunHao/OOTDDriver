@@ -17,6 +17,8 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +32,8 @@ import { HTTP } from '@ionic-native/http/ngx';
     ImagePicker,
     WebView,
     Base64,
-    HTTP
+    HTTP,
+    CallNumber
   ],
   bootstrap: [AppComponent],
 })

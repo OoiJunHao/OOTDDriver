@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
     "@ionic-native/base64": "^5.32.0",
+    "@ionic-native/call-number": "^5.32.1",
     "@ionic-native/camera": "^5.31.1",
     "@ionic-native/core": "^5.31.1",
     "@ionic-native/http": "^5.32.1",
@@ -42,8 +43,10 @@
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "call-number": "^1.0.1",
     "codelyzer": "^6.0.0",
     "com-badrit-base64": "^0.2.0",
+    "cordova-android": "^9.1.0",
     "cordova-plugin-advanced-http": "^3.1.0",
     "cordova-plugin-camera": "^5.0.1",
     "cordova-plugin-device": "^2.0.2",
@@ -79,7 +82,8 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "com-badrit-base64": {},
-      "cordova-plugin-advanced-http": {}
+      "cordova-plugin-advanced-http": {},
+      "mx.ferreyra.callnumber": {}
     },
     "platforms": [
       "android"
