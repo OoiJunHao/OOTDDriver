@@ -15,8 +15,10 @@ export class IndexPage implements OnInit {
   constructor(private sessionService: SessionService) { }
 
   ngOnInit() {
-    this.driver = this.sessionService.getCurrentDriver();
     this.isLoggedIn = this.sessionService.getIsLogin();
+    if (this.isLoggedIn) {
+      this.driver = this.sessionService.getCurrentDriver();
+    }
   }
 
 }
