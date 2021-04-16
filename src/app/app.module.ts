@@ -4,7 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DatePipe } from '@angular/common';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 
@@ -39,7 +39,8 @@ import {
     HTTP,
     CallNumber,
     GoogleMaps,
-    Environment
+    Environment,
+    DatePipe
   ],
   bootstrap: [AppComponent],
 })
