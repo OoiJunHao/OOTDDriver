@@ -9,6 +9,20 @@ import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
 
 import { CallNumber } from '@ionic-native/call-number/ngx';
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  Geocoder,
+  CameraPosition,
+  MarkerOptions,
+  GeocoderResult,
+  Marker,
+  Environment,
+  HtmlInfoWindow,
+  MarkerCluster
+} from '@ionic-native/google-maps';
 
 @Component({
   selector: 'app-order-acceptance',
@@ -22,6 +36,8 @@ export class OrderAcceptancePage implements OnInit {
   found: boolean;
   orderFound: SaleTransaction;
 
+  map: GoogleMap;
+
   constructor(private orderAcceptanceService: OrderAcceptanceServiceService,
     public modalController: ModalController, private driverService: DriverService, private sessionService: SessionService,
     private toastController: ToastController, private router: Router, private loadingController: LoadingController,
@@ -33,6 +49,10 @@ export class OrderAcceptancePage implements OnInit {
   ngOnInit() {
     console.log('INIT');
     this.presentLoading();
+    console.log("loading map")
+  }
+
+  ionViewDidLoad() {
   }
 
   async presentLoading() {
@@ -80,6 +100,7 @@ export class OrderAcceptancePage implements OnInit {
       this.driverService.retrieveCurrentDeliveryTransaction(this.sessionService.getCurrentDriver().driverId).subscribe((response) => {
         this.inDelivery= true;
         this.orderFound = response;
+        this.loadMap();
       }, (error) => {
         console.log(error);
         this.displayError(error);
@@ -186,4 +207,47 @@ export class OrderAcceptancePage implements OnInit {
 
     await toast.present();
   }
+
+  loadMap() {
+
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+         zoom: 18
+       }
+    };
+
+    this.map = GoogleMaps.create('map_canvas', mapOptions);
+
+    Geocoder.geocode({
+      address: this.orderFound.address.address
+    }).then((results: GeocoderResult[]) => {
+      console.log(results);
+
+      if (!results.length) {
+        return null;
+      }
+  
+      // Add a marker
+      let marker: Marker = this.map.addMarkerSync({
+        position: results[0].position,
+        title:  this.orderFound.address.address,
+        animation: 'DROP'
+      });
+  
+      // Move to the position
+      this.map.animateCamera({
+        target: marker.getPosition(),
+        zoom: 15
+      }).then(() => {
+        let infoWindowContent = '<div id = "content">' +
+                                  '<h2>' + this.orderFound.address.address + '</h2>' +
+                                  '</div>'
+        marker.showInfoWindow();
+      });
+
+
+    });
+
+  }
+
 }

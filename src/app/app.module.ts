@@ -19,6 +19,10 @@ import { Base64 } from '@ionic-native/base64/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
+import {
+  GoogleMaps,
+  Environment
+} from '@ionic-native/google-maps';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +37,9 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
     WebView,
     Base64,
     HTTP,
-    CallNumber
+    CallNumber,
+    GoogleMaps,
+    Environment
   ],
   bootstrap: [AppComponent],
 })

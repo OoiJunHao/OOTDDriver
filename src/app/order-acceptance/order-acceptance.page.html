@@ -65,11 +65,13 @@
   </ion-card>
 
   <div *ngIf="inDelivery">
+     
     <ion-card>
       <ion-card-header>
         <ion-card-title style="text-align: center;">Order Details</ion-card-title>
       </ion-card-header>
       <ion-card-content>
+        <div style="height: 300px; width: 300px" id="map_canvas"></div>
         <ion-list>
           <ion-item>
             <ion-label>
