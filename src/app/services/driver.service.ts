@@ -25,11 +25,11 @@ export class DriverService {
     );
   }
 
-  createNewDriver(newDriver: Driver): Observable<any> {
+  createNewDriver(newDriver: Driver): Observable<Driver> {
     let createNewDriverReq = {
       "newDriver": newDriver,
     };
-    return this.httpClient.put<any>(this.baseUrl, createNewDriverReq, httpOptions).pipe(
+    return this.httpClient.put<Driver>(this.baseUrl, createNewDriverReq, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

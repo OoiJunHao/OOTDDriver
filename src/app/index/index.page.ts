@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Driver } from '../models/driver';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexPage implements OnInit {
 
-  constructor() { }
+  driver: Driver;
+  isLoggedIn: boolean;
+
+  constructor(private sessionService: SessionService) { }
 
   ngOnInit() {
+    this.driver = this.sessionService.getCurrentDriver();
+    this.isLoggedIn = this.sessionService.getIsLogin();
   }
 
 }
