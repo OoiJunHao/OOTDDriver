@@ -15,41 +15,31 @@ import { NgForm } from '@angular/forms';
 export class ShowDriverWalletPage implements OnInit {
   
   driver: Driver;
-  feedback: string | null;
   constructor(private router: Router,
-    public sessionService: SessionService, public toastController: ToastController) { }
+    public sessionService: SessionService, public toastController: ToastController, private driverService: DriverService) { }
 
   ngOnInit() {
     this.driver = this.sessionService.getCurrentDriver();
-    this.feedback = "";
   }
 
-  async presentToast() {
-    
+  cashOut() {
+    // Simulating cashout here
+    this.driverService.cashOutEarnings(this.sessionService.getCurrentDriver().driverId).subscribe((res) => {
+      this.sessionService.setCurrentDriver(res);
+      this.driver = this.sessionService.getCurrentDriver();
+      this.presentToast('Your Request Will Be Processed\nPlease wait 1 - 3 days');
+    }, (error) => {
+      console.log(error);
+      this.presentToast('An error has occured\nPlease try again');
+    })
+  }
+
+  async presentToast(messageToShow: string) {
     const toast = await this.toastController.create({
-      message: 'Your Request Will Be Processed. Please wait 1 - 3 days.',
+      message: messageToShow,
       duration: 2000,
       position: "top"
     });
     toast.present();
   }
-
-  async presentFeedbackToast(driverFeedbackForm: NgForm) {
-    
-    console.log(`feedback = ${this.feedback}`);
-    const welcomeToast = await this.toastController.create({
-      message: 'Thank you for your hardwork. Here are your earnings! OOTDFood appreciates you!',
-      duration: 2500,
-      position: "top"
-    });
-    welcomeToast.present().then(()=>{this.feedback=""});
-  }
-
-
-  
-
-
-
-  
-
 }

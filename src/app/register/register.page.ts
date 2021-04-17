@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Driver } from '../models/driver';
 import { DriverService } from '../services/driver.service';
+import { SessionService } from '../services/session.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +31,9 @@ export class RegisterPage implements OnInit {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private driverService: DriverService,
-    public toastController: ToastController) {
+    public toastController: ToastController,
+    private sessionService: SessionService,
+    private appComponent: AppComponent) {
     this.submitted = false;
     this.newDriver = new Driver();
     this.registrationSuccess = false;
@@ -55,6 +59,10 @@ export class RegisterPage implements OnInit {
           this.submitted = false;
           this.registerSuccess();
           registrationForm.reset();
+          this.sessionService.setIsLogin(true);
+          this.sessionService.setCurrentDriver(response);
+          this.appComponent.updateMainMenu();
+          this.router.navigate(["/index"]);
         },
         error => {
           this.registrationError = true;
@@ -64,7 +72,6 @@ export class RegisterPage implements OnInit {
         }
       );
     }
-    this.registerFailure();
   }
 
   back(): void {

@@ -8,15 +8,29 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Welcome</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
+  <ion-card *ngIf="isLoggedIn">
+    <ion-card-content style="text-align: center;">
+      <img src="../../assets/ootdDriver_logo.png" style="padding: 5%;"> 
+        <h1><b>Welcome back {{driver.firstname}} {{driver.lastName}}</b></h1>
+      <h2>
+        &#xf104; Open the order acceptance page on the side menu to get started
+      </h2>
       <p>
-        Touch someone's life with our specially curated OOTD Food Bentos. Please drive swiftly but safely :P
+        Please drive swiftly but safely
       </p>
-
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="!isLoggedIn">
+    <ion-card-content style="text-align: center;">
+      <img src="../../assets/ootdDriver_logo.png" style="padding: 5%;"> 
+        <h1><b>Welcome to OOTD Driver</b></h1>
+      <h2>
+         OOTDFood offers an on-demand, nutritious solution that caters to late night office dwellers, beyond the ‘standard’ office hours. We specialize in targeting the pain points for overtime workers: healthy and affordable late night food catering.
+      </h2>
+      <br/>
+      <p>
+        Register/Log In on the left to get started with us as a delivery partner!
+      </p>
     </ion-card-content>
   </ion-card>
 </ion-content>
