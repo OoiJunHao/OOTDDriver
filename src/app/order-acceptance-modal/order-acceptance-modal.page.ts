@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { SaleTransaction } from '../models/sale-transaction';
 import { ModalController, NavParams } from '@ionic/angular';
 import { SaleTransactionLine } from '../models/sale-transaction-line';
@@ -19,25 +19,10 @@ export class OrderAcceptanceModalPage implements OnInit {
     this.saleTransactionLineItems = this.value.saleTransactionLineItemEntities;
   }
 
-
   public closeModal()
 	{
-		 this.modalController.dismiss({
-			 'result': 'refresh'
-		 });
+		 this.modalController.dismiss();
 	}
-
-  public closeCompletely() {
-    this.modalController.dismiss({
-      'result': 'close'
-    });
-  }
-
-  public closeAndChosen() {
-    this.modalController.dismiss({
-      'result' : 'selected'
-    })
-  }
 
   returnDate(date: Date) : String {
     let newDate;

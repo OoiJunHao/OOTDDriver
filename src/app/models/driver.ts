@@ -11,6 +11,8 @@ export class Driver {
     monthlyEarnings: number;
     dailyEarnings: number;
     active: boolean;
+    currentDelivery: number;
+    bankAccountNumber: string;
 
     saleTransaction: SaleTransaction[];
 
@@ -27,7 +29,9 @@ export class Driver {
         monthlyEarnings?: number,
         dailyEarnings?: number,
         active?: boolean,
-        saleTransaction?: SaleTransaction[]
+        saleTransaction?: SaleTransaction[],
+        currentDelivery?: number,
+        bankAccountNumber?: string
     ) {
         this.driverId = driverId
         this.firstname = firstname
@@ -40,6 +44,8 @@ export class Driver {
         this.dailyEarnings = dailyEarnings
         this.active = active
         this.saleTransaction = saleTransaction
+        this.currentDelivery = currentDelivery;
+        this.bankAccountNumber = bankAccountNumber;
     }
 
 }

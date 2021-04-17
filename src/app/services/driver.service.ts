@@ -25,11 +25,11 @@ export class DriverService {
     );
   }
 
-  createNewDriver(newDriver: Driver): Observable<any> {
+  createNewDriver(newDriver: Driver): Observable<Driver> {
     let createNewDriverReq = {
       "newDriver": newDriver,
     };
-    return this.httpClient.put<any>(this.baseUrl, createNewDriverReq, httpOptions).pipe(
+    return this.httpClient.put<Driver>(this.baseUrl, createNewDriverReq, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -54,6 +54,24 @@ export class DriverService {
     return this.httpClient.post<any>(this.baseUrl, updateDriverReqIonic, httpOptions).pipe(
       catchError(this.handleError)
     );
+  }
+
+  retrieveCurrentDeliveryTransaction(driverId: Number): Observable<SaleTransaction> {
+    return this.httpClient.get<SaleTransaction>(this.baseUrl + "/getCurrentDelivery/" + driverId).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  completeDelivery(driverId: Number, saleTransactionId: Number): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + "/completeDelivery/" + driverId + "/" + saleTransactionId).pipe(
+      catchError(this.handleError)
+   );
+  }
+
+  cashOutEarnings(driverId: Number): Observable<Driver> {
+    return this.httpClient.post<any>(this.baseUrl + "/cashOutEarnings/?driverId=" + driverId, httpOptions).pipe(
+      catchError(this.handleError)
+   );
   }
 
   private handleError(error: HttpErrorResponse) {

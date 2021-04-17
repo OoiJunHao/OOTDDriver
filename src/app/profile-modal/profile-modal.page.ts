@@ -33,7 +33,7 @@ export class ProfileModalPage implements OnInit {
     if (this.currentDriver.firstname.length > 32 || this.currentDriver.lastName.length > 32) {
       this.nameLengthError();
       return false;
-    }
+    } // TO ADD MORE VALIDATION CHECKS
 
     this.modalController.dismiss({
       'toUpdateDriver': this.currentDriver

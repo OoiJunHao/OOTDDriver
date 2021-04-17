@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-// import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-// import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Platform } from '@ionic/angular';
 import { SessionService } from './services/session.service';
 @Component({
@@ -12,15 +12,18 @@ export class AppComponent {
 
   public appPages;
 
-  constructor(public sessionService: SessionService, private platform: Platform) {
-    // this.initialiseApp();
+  constructor(public sessionService: SessionService, 
+    private platform: Platform,           
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar) {
+    this.initialiseApp();
     this.updateMainMenu();
   }
 
   initialiseApp() {
     this.platform.ready().then(() => {
-      // this.statusBar.styleDefault();
-      // this.splashScreen.hide();
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
 
