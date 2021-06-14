@@ -1,10 +1,10 @@
 # OOTDDriver
 A food delivery app used by our drivers to complement OOTDFood app.
 
-The backend system supporting the RESTful web services can be found [here](https://github.com/BikJeun/OOTDFood).
+The backend system supporting the RESTful web services can be found [here](https://github.com/OoiJunHao/OOTDFood).
 
 ## To Run OOTDDriver
-1. Ensure that [OOTDFood](https://github.com/BikJeun/OOTDFood) have been deployed first. 
+1. Ensure that [OOTDFood](https://github.com/OoiJunHao/OOTDFood) have been deployed first. 
 1. Run `npm install` to generate all the node module.
 1. Run `ionic serve` for a dev server. The app will automatically reload if you change any of the source files.
 
